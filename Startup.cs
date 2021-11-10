@@ -3,7 +3,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using UniversalAPI.PersonalExpenseTracker.BL;
+using UniversalAPI.PersonalExpenseTracker.Model;
+using UniversalAPI.PersonalExpenseTracker.DAL;
 
 namespace UniversalAPI
 {
@@ -19,8 +23,15 @@ namespace UniversalAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<DatabaseSettings>(Configuration.GetSection(nameof(DatabaseSettings)));
+            services.AddSingleton<IDatabaseSettings>(sp =>
+       sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
 
             services.AddControllers();
+
+            services.AddSingleton<IExpenseDetailsHandler, ExpenseDetailsHandler>();
+            services.AddSingleton<IExpenseDetailsDal, ExpenseDetailsDal>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "UniversalAPI", Version = "v1" });
