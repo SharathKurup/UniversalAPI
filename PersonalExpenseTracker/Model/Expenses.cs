@@ -18,5 +18,8 @@ namespace UniversalAPI.PersonalExpenseTracker.Model
 
         [JsonProperty("isBackUp")]
         public int IsBackUp { get; set; }
+
+        [JsonProperty("ExpenseCreatedBy")]
+        public string ExpenseCreatedBy { get; set; }
     }
 }

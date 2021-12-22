@@ -17,10 +17,9 @@ namespace UniversalAPI.PersonalExpenseTracker.Controllers
 
         [Route("Backup")]
         [HttpPost]
-        public ExpenseDetails BackupExpenseDetails(ExpenseDetails expenseDetail)
+        public ExpensesUpdateStatusList BackupExpenseDetails(ExpenseDetails expenseDetail)
         {
-            _expenseDetailsHandler.AddExpenseDetail(expenseDetail);
-            return null;
+            return _expenseDetailsHandler.AddExpenseDetail(expenseDetail);
         }
 
         [Route("Health")]

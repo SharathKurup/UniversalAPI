@@ -8,6 +8,6 @@ namespace UniversalAPI.PersonalExpenseTracker.BL
 {
     public interface IExpenseDetailsHandler
     {
-        ExpenseDetails AddExpenseDetail(ExpenseDetails expenseDetail);
+        ExpensesUpdateStatusList AddExpenseDetail(ExpenseDetails expenseDetail);
     }
 }
